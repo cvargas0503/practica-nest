@@ -1,0 +1,17 @@
+import { Body, Controller, HttpCode, Post } from '@nestjs/common';
+import { ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { AuthService } from './auth.service';
+import { LoginDto } from './dto/login.dto';
+
+@ApiTags('Autenticación')
+@Controller('auth')
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+
+  @Post('login')
+  @HttpCode(200)
+  @ApiUnauthorizedResponse({ description: 'Credenciales inválidas' })
+  login(@Body() loginDto: LoginDto) {
+    return this.authService.validateUser(loginDto);
+  }
+}
