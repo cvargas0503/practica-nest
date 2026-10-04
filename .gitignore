@@ -11,3 +11,5 @@ documentos/
 *.docx
 *.png
 *.log
+
+/generated/prisma
