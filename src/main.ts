@@ -10,8 +10,9 @@ async function bootstrap() {
   app.enableShutdownHooks();
   const config = new DocumentBuilder()
     .setTitle('API de usuarios y tenants')
-    .setDescription('Práctica de NestJS, Prisma, CRUD')
+    .setDescription('Práctica de NestJS, Prisma, CRUD y autenticación JWT')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   SwaggerModule.setup('api', app, SwaggerModule.createDocument(app, config));
   await app.listen(process.env.PORT ?? 3000, '127.0.0.1');
